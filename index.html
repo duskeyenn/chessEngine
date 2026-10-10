@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catur</title>
+<script>
+var lost=[];
+function miss(e){lost.push(e.getAttribute('src')||e.getAttribute('href'));}
+addEventListener('error',function(e){if(e.message)document.getElementById('status').textContent='Error: '+e.message+' ('+String(e.filename).split('/').pop()+':'+e.lineno+')';});
+addEventListener('load',function(){
+  var s=document.getElementById('status');
+  if(lost.length)s.textContent='File tidak termuat: '+lost.join(', ')+'. Pastikan folder css dan js ikut dan strukturnya utuh.';
+  else if(typeof Controller==='undefined')s.textContent='File JS tidak termuat. Pastikan folder js ikut dan strukturnya utuh.';
+});
+</script>
+<link rel="stylesheet" href="css/style.css" onerror="miss(this)">
+</head>
+<body>
+<div id="board"></div>
+<p id="status" role="status"></p>
+<p>
+<label>Mode
+<select id="mode">
+<option value="ai">Lawan komputer</option>
+<option value="net">Online (satu hotspot)</option>
+</select>
+</label>
+</p>
+<div id="aiBox">
+<p>
+<label>Elo komputer: <output id="eloVal">1200</output><br>
+<input id="elo" type="range" min="250" max="2000" step="50" value="1200">
+</label>
+</p>
+<p>
+<label>Main sebagai
+<select id="side">
+<option value="w">Putih</option>
+<option value="b">Hitam</option>
+</select>
+</label>
+</p>
+<p><button id="undo">Batalkan langkah</button></p>
+</div>
+<div id="netBox" hidden>
+<p>
+<label>Kode ruangan
+<input id="room" maxlength="12" size="10" autocapitalize="none">
+</label>
+<button id="join">Gabung</button>
+</p>
+</div>
+<p>
+<button id="new">Game baru</button>
+<button id="flip">Putar papan</button>
+</p>
+<ol id="moves"></ol>
+<div id="promo" hidden></div>
+<script src="js/engine/constants.js" defer onerror="miss(this)"></script>
+<script src="js/engine/board.js" defer onerror="miss(this)"></script>
+<script src="js/engine/moves.js" defer onerror="miss(this)"></script>
+<script src="js/engine/eval.js" defer onerror="miss(this)"></script>
+<script src="js/engine/ai.js" defer onerror="miss(this)"></script>
+<script src="js/engine/game.js" defer onerror="miss(this)"></script>
+<script src="js/ui/renderer.js" defer onerror="miss(this)"></script>
+<script src="js/ui/net.js" defer onerror="miss(this)"></script>
+<script src="js/ui/controller.js" defer onerror="miss(this)"></script>
+<script src="js/main.js" defer onerror="miss(this)"></script>
+</body>
+</html>

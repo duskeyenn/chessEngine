@@ -1,0 +1,14 @@
+#board{--s:min(98vw,70vh,560px);width:var(--s);height:var(--s);display:grid;grid-template-columns:repeat(8,minmax(0,1fr));grid-template-rows:repeat(8,minmax(0,1fr))}
+.sq{min-width:0;min-height:0;overflow:hidden;display:grid;place-items:center;font-size:calc(var(--s)/8*.78);line-height:1;font-family:"Noto Sans Symbols 2","Segoe UI Symbol","DejaVu Sans",sans-serif;cursor:pointer;user-select:none}
+.light{background-color:#eee}
+.dark{background-color:#999}
+.w{color:#fff;-webkit-text-stroke:1px #000;paint-order:stroke fill}
+.b{color:#000}
+.last{background-color:#cc8}
+.sel{background-color:#fd0}
+.check{background-color:#f66}
+.tgt{background-image:radial-gradient(circle,#0006 17%,#0000 19%)}
+.cap{background-image:radial-gradient(circle,#0000 60%,#0006 62%)}
+#promo{position:fixed;inset:0;display:flex;gap:8px;justify-content:center;align-items:center;background:#000a}
+#promo[hidden]{display:none}
+#promo button{width:72px;height:72px;font-size:48px;line-height:1;background:#999}
